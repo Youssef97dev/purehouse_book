@@ -2,22 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "CormorantGaramond";
+  src: url("./fonts/CormorantGaramond-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "NotoSerifDisplay";
+  src: url("./fonts/NotoSerifDisplay.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NotoSerifDisplay";
+  src: url("./fonts/NotoSerifDisplay-med.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NotoSerifDisplay";
+  src: url("./fonts/NotoSerifDisplay-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NotoSerifDisplay";
+  src: url("./fonts/NotoSerifDisplay-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+
+:root {
+  --brown-100: #8b5330;
+  --brown-90: #95613f;
+  --brown-80: #a06f4f;
+  --brown-70: #ab7f61;
+  --brown-60: #b68f75;
+  --brown-50: #c1a089;
+  --brown-40: #cdb29e;
+  --brown-30: #d8c4b5;
+  --brown-20: #e5d7cd;
+  --brown-10: #f2ebe6;
+
+  --primary-10: #bc9e3a;
+  --primary-11: #954321;
+  --sidebar-bg: #6e805a;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--primary-10);
+  font-family: "NotoSerifDisplay", serif;
+}
+
+/* scroll bar */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--brown-10);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--brown-70);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brown-100);
 }
 
 @layer utilities {
