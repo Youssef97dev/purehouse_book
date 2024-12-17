@@ -23,6 +23,8 @@ const ReservationForm = () => {
   const [chambreCount, setChambreCount] = useState(1);
   const [openCalendar, setOpenCalendar] = useState(false);
   const [openCalendarTwo, setOpenCalendarTwo] = useState(false);
+  const [isAdultOpen, setIsAdultOpen] = useState(false);
+  const [isChambreOpen, setIsChambreOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -71,9 +73,9 @@ const ReservationForm = () => {
     isClient && (
       <form
         onSubmit={handleSubmit}
-        className="relative w-full  flex flex-col justify-center items-center gap-3"
+        className="relative w-full  flex flex-col justify-center items-center gap-5 font-mulish"
       >
-        <div className="w-full  flex flex-col justify-center items-center bg-white shadow-xl p-3 gap-3">
+        <div className="w-full  flex flex-col justify-center items-center bg-white shadow-xl p-3 gap-3 text-sm">
           <div className="w-full flex flex-row justify-center items-center gap-3">
             <input
               type="text"
@@ -83,7 +85,7 @@ const ReservationForm = () => {
               onChange={handleChange}
               placeholder="Fisrt Name"
               required
-              className="w-full border border-primary_10 rounded placeholder:text-primary_10 p-2 focus:outline-none font-bold text-primary_11"
+              className="w-full border border-primary_10 rounded placeholder:text-primary_10 p-2 focus:outline-none text-primary_11"
             />
             <input
               type="text"
@@ -93,7 +95,7 @@ const ReservationForm = () => {
               onChange={handleChange}
               placeholder="Last Name"
               required
-              className="w-full border border-primary_10 rounded placeholder:text-primary_10 p-2 focus:outline-none font-bold text-primary_11"
+              className="w-full border border-primary_10 rounded placeholder:text-primary_10 p-2 focus:outline-none text-primary_11"
             />
           </div>
           <div className="w-full flex flex-col justify-center items-center gap-3">
@@ -105,7 +107,7 @@ const ReservationForm = () => {
               onChange={handleChange}
               placeholder="Enter Email"
               required
-              className="w-full border border-primary_10 rounded placeholder:text-primary_10 p-2 focus:outline-none font-bold text-primary_11"
+              className="w-full border border-primary_10 rounded placeholder:text-primary_10 p-2 focus:outline-none text-primary_11"
             />
             <input
               type="tel"
@@ -115,38 +117,33 @@ const ReservationForm = () => {
               onChange={handleChange}
               placeholder="Enter Phone Number"
               required
-              className="w-full border border-primary_10 rounded placeholder:text-primary_10 p-2 focus:outline-none font-bold text-primary_11"
+              className="w-full border border-primary_10 rounded placeholder:text-primary_10 p-2 focus:outline-none text-primary_11"
             />
           </div>
         </div>
         {openCalendar && (
-          <div>
-            <Calendar
-              onChange={setStartDate}
-              value={startDate}
-              className="absolute -top-32 left-10"
-            />
+          <div className="absolute -top-40 left-1">
+            <Calendar onChange={setStartDate} value={startDate} />
           </div>
         )}
         {openCalendarTwo && (
-          <div>
-            <Calendar
-              onChange={setEndDate}
-              value={endDate}
-              className="absolute -top-32 left-10"
-            />
+          <div className="absolute -top-40 left-1">
+            <Calendar onChange={setEndDate} value={endDate} />
           </div>
         )}
-        <div className="w-full flex justify-evenly items-center bg-white shadow-xl py-1 px-3">
+        <div className="w-full flex flex-col lg:flex-row justify-center lg:justify-between items-center bg-white shadow-xl py-3 px-20 font-extralight gap-5 lg:gap-24">
           <div className="w-full flex justify-center items-center gap-1">
             <div
-              className="w-full flex flex-col justify-center items-center gap-2 cursor-pointer"
+              className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
               onClick={() => {
                 setOpenCalendar(!openCalendar);
                 setOpenCalendarTwo(false);
               }}
             >
-              <span className="text-[10px] leading-[12px] text-[#666666] font-medium uppercase">
+              <span className="absolute top-[166px] text-[13px] leading-[12px] text-[#fff] font-normal">
+                Check In
+              </span>
+              <span className="text-[10px] leading-[12px] text-[#666666] uppercase">
                 {startDate.toLocaleString("default", { month: "short" })}{" "}
                 {startDate.getFullYear()}
               </span>
@@ -154,19 +151,22 @@ const ReservationForm = () => {
                 {startDate.getDate()}
               </span>
               {!openCalendar ? (
-                <IoIosArrowDown size={18} color="#333333" />
+                <IoIosArrowDown size={15} color="#333333" />
               ) : (
-                <AiOutlineClose size={18} color="#333333" />
+                <AiOutlineClose size={15} color="#333333" />
               )}
             </div>
             <div
-              className="w-full flex flex-col justify-center items-center gap-2 cursor-pointer"
+              className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
               onClick={() => {
                 setOpenCalendarTwo(!openCalendarTwo);
                 setOpenCalendar(false);
               }}
             >
-              <span className="text-[10px] leading-[12px] text-[#666666] font-medium uppercase">
+              <span className="absolute top-[166px] text-[13px] leading-[12px] text-[#fff] font-normal">
+                Check Out
+              </span>
+              <span className="text-[10px] leading-[12px] text-[#666666]  uppercase">
                 {endDate.toLocaleString("default", { month: "short" })}{" "}
                 {endDate.getFullYear()}
               </span>
@@ -174,22 +174,53 @@ const ReservationForm = () => {
                 {endDate.getDate()}
               </span>
               {!openCalendarTwo ? (
-                <IoIosArrowDown size={18} color="#333333" />
+                <IoIosArrowDown size={15} color="#333333" />
               ) : (
-                <AiOutlineClose size={18} color="#333333" />
+                <AiOutlineClose size={15} color="#333333" />
               )}
             </div>
           </div>
-
           <div className="w-full flex justify-center items-center gap-1">
-            <div className="w-full flex flex-col justify-center items-center gap-2">
-              <span className="text-[10px] leading-[12px] text-[#666666] font-medium">
+            <div className="w-full flex flex-col justify-center items-center gap-1">
+              <span className="text-[10px] leading-[12px] text-[#666666] ">
                 ADULTES
               </span>
               <span className="text-[36px] leading-[43.2px]  text-[#2A2A2A]">
                 {adultCount}
               </span>
-              <div className="w-full flex justify-center items-center gap-2 text-primary_10">
+              <div className="relative">
+                {!isAdultOpen ? (
+                  <IoIosArrowDown
+                    size={15}
+                    color="#333333"
+                    className="cursor-pointer"
+                    onClick={() => setIsAdultOpen(true)}
+                  />
+                ) : (
+                  <AiOutlineClose
+                    size={15}
+                    color="#333333"
+                    className="cursor-pointer"
+                    onClick={() => setIsAdultOpen(false)}
+                  />
+                )}
+                {isAdultOpen && (
+                  <div className="absolute bg-white top-4 -left-8 p-3 w-fit flex justify-center items-center gap-2 text-primary_10">
+                    <TbSquareRoundedMinusFilled
+                      size={25}
+                      className="cursor-pointer"
+                      onClick={() => setAdultCount(adultCount - 1)}
+                    />
+                    <TbSquareRoundedPlusFilled
+                      size={25}
+                      className="cursor-pointer"
+                      onClick={() => setAdultCount(adultCount + 1)}
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* <div className="w-full flex justify-center items-center gap-2 text-primary_10">
                 <TbSquareRoundedMinusFilled
                   size={25}
                   className="cursor-pointer"
@@ -200,16 +231,47 @@ const ReservationForm = () => {
                   className="cursor-pointer"
                   onClick={() => setAdultCount(adultCount + 1)}
                 />
-              </div>
+              </div> */}
             </div>
-            <div className="w-full flex flex-col justify-center items-center gap-2">
-              <span className="text-[10px] leading-[12px] text-[#666666] font-medium">
+            <div className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer">
+              <span className="text-[10px] leading-[12px] text-[#666666] ">
                 CHAMBRES
               </span>
               <span className="text-[36px] leading-[43.2px]  text-[#2A2A2A]">
                 {chambreCount}
               </span>
-              <div className="w-full flex justify-center items-center gap-2 text-primary_10">
+              <div className="relative">
+                {!isChambreOpen ? (
+                  <IoIosArrowDown
+                    size={15}
+                    color="#333333"
+                    className="cursor-pointer"
+                    onClick={() => setIsChambreOpen(true)}
+                  />
+                ) : (
+                  <AiOutlineClose
+                    size={15}
+                    color="#333333"
+                    className="cursor-pointer"
+                    onClick={() => setIsChambreOpen(false)}
+                  />
+                )}
+                {isChambreOpen && (
+                  <div className="absolute bg-white top-4 -left-8 p-3 w-fit flex justify-center items-center gap-2 text-primary_10">
+                    <TbSquareRoundedMinusFilled
+                      size={25}
+                      className="cursor-pointer"
+                      onClick={() => setChambreCount(chambreCount - 1)}
+                    />
+                    <TbSquareRoundedPlusFilled
+                      size={25}
+                      className="cursor-pointer"
+                      onClick={() => setChambreCount(chambreCount + 1)}
+                    />
+                  </div>
+                )}
+              </div>
+              {/* <div className="w-full flex justify-center items-center gap-2 text-primary_10">
                 <TbSquareRoundedMinusFilled
                   size={25}
                   className="cursor-pointer"
@@ -220,7 +282,7 @@ const ReservationForm = () => {
                   className="cursor-pointer"
                   onClick={() => setChambreCount(chambreCount + 1)}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="w-full flex justify-center items-center">
@@ -229,7 +291,7 @@ const ReservationForm = () => {
               className="w-fit bg-primary_10 text-white py-2 px-4 rounded"
               disabled={loading}
             >
-              Reserver
+              Reserve
             </button>
           </div>
         </div>

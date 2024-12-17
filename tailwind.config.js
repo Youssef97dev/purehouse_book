@@ -25,6 +25,7 @@ module.exports = {
       },
       fontFamily: {
         garamond: ["CormorantGaramond", "serif"],
+        mulish: ["Mulish", "serif"],
       },
     },
   },
