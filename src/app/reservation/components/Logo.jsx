@@ -8,7 +8,7 @@ const Logo = () => {
     <div className="w-full h-[40%] bg-primary_10 flex flex-col justify-center items-center shadow-lg shadow-[#00000065]">
       <div className="w-full h-[82%] flex justify-center items-center">
         <Image
-          src="/icons/logo-purehouse.png"
+          src="/icons/logo-purehouse-farm.png"
           height={200}
           width={200}
           className="object-cover"
