@@ -2,8 +2,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 export const metadata = {
-  title: "Le Salama",
-  description: "Moroccan soul food",
+  title: "Purehouse",
+  description: "PureHouse Reservation",
 };
 
 export default function RootLayout({ children }) {
